@@ -34,3 +34,6 @@ build/
 
 # Sensitive data
 .env
+
+# Dynamic content
+uploads/
