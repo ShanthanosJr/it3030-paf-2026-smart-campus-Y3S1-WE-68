@@ -79,6 +79,7 @@ const GanttTimeline = ({ bookings, resources }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'APPROVED': return 'bg-green-500'
+      case 'REJECTED':
       case 'CANCELLED': return 'bg-red-500'
       case 'PENDING': return 'bg-amber-500'
       default: return 'bg-gray-400'
@@ -89,6 +90,7 @@ const GanttTimeline = ({ bookings, resources }) => {
   const getStatusTextColor = (status) => {
     switch (status) {
       case 'APPROVED': return 'text-green-700 bg-green-100'
+      case 'REJECTED':
       case 'CANCELLED': return 'text-red-700 bg-red-100'
       case 'PENDING': return 'text-amber-700 bg-amber-100'
       default: return 'text-gray-700 bg-gray-100'
@@ -129,91 +131,66 @@ const GanttTimeline = ({ bookings, resources }) => {
   // Handle print
   const handlePrint = () => {
     const printWindow = window.open('', '_blank')
+    if (!printWindow) {
+      alert('Pop-up blocked! Please allow pop-ups for this site to print the timeline.')
+      return
+    }
+
     const ganttContent = ganttRef.current
-    if (!ganttContent || !printWindow) return
+    if (!ganttContent) return
 
     const printStyles = `
       <style>
         @page { size: landscape; margin: 10mm; }
-        body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 20px; }
+        body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 20px; color: #111827; }
         .gantt-container { width: 100%; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #f3f4f6; padding-bottom: 15px; }
         .title { font-size: 24px; font-weight: bold; }
-        .subtitle { font-size: 14px; color: #666; }
-        .date { font-size: 18px; font-weight: 600; }
-        .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
-        .metric-card { background: #f3f4f6; border-radius: 8px; padding: 12px; text-align: center; }
-        .metric-value { font-size: 20px; font-weight: bold; }
-        .metric-label { font-size: 12px; color: #666; margin-top: 4px; }
-        .legend { display: flex; gap: 16px; margin-bottom: 16px; font-size: 12px; }
-        .legend-item { display: flex; align-items: center; gap: 6px; }
-        .legend-dot { width: 12px; height: 12px; border-radius: 2px; }
-        .timeline { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
-        .resource-row { display: flex; border-bottom: 1px solid #e5e7eb; min-height: 50px; }
-        .resource-row:last-child { border-bottom: none; }
-        .resource-info { width: 200px; padding: 12px; border-right: 1px solid #e5e7eb; background: #f9fafb; }
-        .resource-name { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .resource-meta { font-size: 11px; color: #6b7280; margin-top: 2px; }
-        .booking-area { flex: 1; position: relative; padding: 8px; }
-        .booking-bar { position: absolute; height: 28px; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; color: white; font-size: 11px; font-weight: 500; }
-        .no-bookings { color: #9ca3af; font-size: 12px; font-style: italic; }
-        .approved { background: #22c55e; }
-        .cancelled { background: #ef4444; }
-        .pending { background: #f59e0b; }
+        .subtitle { font-size: 14px; color: #6b7280; }
+        .date { font-size: 18px; font-weight: 600; color: #f97316; }
+        .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 25px; }
+        .metric-card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 15px; text-align: center; }
+        .metric-value { font-size: 24px; font-weight: bold; }
+        .metric-label { font-size: 12px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .legend { display: flex; gap: 20px; margin-bottom: 20px; font-size: 13px; font-weight: 500; }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .legend-dot { width: 14px; height: 14px; border-radius: 4px; }
+        .timeline { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
         .days-header { display: flex; border-bottom: 1px solid #e5e7eb; background: #f9fafb; }
-        .day-label { flex: 1; text-align: center; padding: 8px; font-size: 11px; color: #6b7280; border-right: 1px solid #e5e7eb; }
+        .day-label { flex: 1; text-align: center; padding: 10px 5px; font-size: 11px; color: #6b7280; border-right: 1px solid #e5e7eb; font-weight: 600; }
         .day-label:last-child { border-right: none; }
-        @media print {
-          .no-print { display: none !important; }
-        }
+        .resource-row { display: flex; border-bottom: 1px solid #e5e7eb; min-height: 55px; }
+        .resource-row:last-child { border-bottom: none; }
+        .resource-info { width: 220px; padding: 12px; border-right: 1px solid #e5e7eb; background: #f9fafb; shrink: 0; }
+        .resource-name { font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .resource-meta { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+        .booking-area { flex: 1; position: relative; padding: 10px; background: white; }
+        .booking-bar { position: absolute; height: 32px; border-radius: 6px; display: flex; align-items: center; padding: 0 10px; color: white; font-size: 11px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .no-bookings { color: #d1d5db; font-size: 12px; font-style: italic; display: flex; align-items: center; height: 100%; }
+        .approved { background: #10b981; }
+        .rejected, .cancelled { background: #ef4444; }
+        .pending { background: #f59e0b; }
       </style>
     `
 
-    // Build the print HTML
-    const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate()
-    const monthName = new Date(selectedYear, selectedMonth).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-
-    // Get filtered bookings
-    const filteredBookings = bookings.filter(b => {
-      const bookingDate = new Date(b.startTime)
-      return bookingDate.getMonth() === selectedMonth && bookingDate.getFullYear() === selectedYear
-    })
-
+    // Data for print
     const totalBookings = filteredBookings.length
     const approvedCount = filteredBookings.filter(b => b.status === 'APPROVED').length
-    const cancelledCount = filteredBookings.filter(b => b.status === 'CANCELLED').length
+    const rejectedCount = filteredBookings.filter(b => ['REJECTED', 'CANCELLED'].includes(b.status)).length
     const pendingCount = filteredBookings.filter(b => b.status === 'PENDING').length
 
-    // Build resource rows HTML
     const resourceRowsHtml = resources.map(r => {
       const rBookings = filteredBookings.filter(b => b.resourceId === r.id).sort((a, b) => new Date(a.startTime) - new Date(b.startTime))
 
-      if (rBookings.length === 0) {
-        return `
-          <div class="resource-row">
-            <div class="resource-info">
-              <div class="resource-name">${r.name}</div>
-              <div class="resource-meta">${r.type?.replace(/_/g, ' ') || 'Resource'} • Capacity: ${r.capacity}</div>
-            </div>
-            <div class="booking-area">
-              <span class="no-bookings">No bookings</span>
-            </div>
-          </div>
-        `
+      let barsHtml = '<div class="no-bookings">No activity</div>'
+      if (rBookings.length > 0) {
+        barsHtml = rBookings.map(b => {
+          const style = getBookingStyle(b)
+          const statusClass = b.status === 'APPROVED' ? 'approved' : ['REJECTED', 'CANCELLED'].includes(b.status) ? 'rejected' : 'pending'
+          const label = formatTimeRange(b)
+          return `<div class="booking-bar ${statusClass}" style="left: ${style.left}; width: ${style.width}">${label}</div>`
+        }).join('')
       }
-
-      const barsHtml = rBookings.map(b => {
-        const startDate = new Date(b.startTime)
-        const endDate = new Date(b.endTime)
-        const startDay = startDate.getDate()
-        const endDay = endDate.getDate()
-        const left = ((startDay - 1) / daysInMonth) * 100
-        const width = ((endDay - startDay + 1) / daysInMonth) * 100
-        const statusClass = b.status === 'APPROVED' ? 'approved' : b.status === 'CANCELLED' ? 'cancelled' : 'pending'
-        const label = `${startDay}-${endDay} ${monthName.split(' ')[0]}`
-
-        return `<div class="booking-bar ${statusClass}" style="left: ${left}%; width: ${Math.max(width, 3)}%;">${label}</div>`
-      }).join('')
 
       return `
         <div class="resource-row">
@@ -226,64 +203,72 @@ const GanttTimeline = ({ bookings, resources }) => {
       `
     }).join('')
 
-    // Days header
-    const daysHeaderHtml = Array.from({ length: Math.min(10, daysInMonth) }, (_, i) => {
-      const dayNum = Math.floor((i / 9) * (daysInMonth - 1)) + 1
-      return `<div class="day-label">${dayNum}</div>`
+    const daysCount = daysInMonth > 31 ? 31 : daysInMonth
+    const daysHeaderHtml = Array.from({ length: daysCount }, (_, i) => {
+      const dayNum = i + 1
+      if (dayNum % 5 === 0 || dayNum === 1 || dayNum === daysInMonth) {
+        return `<div class="day-label">${dayNum}</div>`
+      }
+      return `<div class="day-label" style="color: transparent;">.</div>`
     }).join('')
 
     printWindow.document.write(`
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Booking Timeline - ${monthName}</title>
+        <title>Campus Booking Timeline - ${monthName}</title>
         ${printStyles}
       </head>
       <body>
         <div class="gantt-container">
           <div class="header">
             <div>
-              <div class="title">Booking Timeline</div>
-              <div class="subtitle">Resource bookings report</div>
+              <div class="title">Campus Booking Timeline</div>
+              <div class="subtitle">Operations Intelligence Report</div>
             </div>
             <div class="date">${monthName}</div>
           </div>
           <div class="metrics">
             <div class="metric-card">
               <div class="metric-value">${totalBookings}</div>
-              <div class="metric-label">Total Bookings</div>
+              <div class="metric-label">Total Volume</div>
             </div>
-            <div class="metric-card">
-              <div class="metric-value" style="color: #22c55e;">${approvedCount}</div>
+            <div class="metric-card" style="border-top: 4px solid #10b981;">
+              <div class="metric-value" style="color: #10b981;">${approvedCount}</div>
               <div class="metric-label">Approved</div>
             </div>
-            <div class="metric-card">
-              <div class="metric-value" style="color: #ef4444;">${cancelledCount}</div>
-              <div class="metric-label">Cancelled</div>
+            <div class="metric-card" style="border-top: 4px solid #ef4444;">
+              <div class="metric-value" style="color: #ef4444;">${rejectedCount}</div>
+              <div class="metric-label">Rejected/Cancelled</div>
             </div>
-            <div class="metric-card">
+            <div class="metric-card" style="border-top: 4px solid #f59e0b;">
               <div class="metric-value" style="color: #f59e0b;">${pendingCount}</div>
-              <div class="metric-label">Pending</div>
+              <div class="metric-label">Action Pending</div>
             </div>
           </div>
           <div class="legend">
-            <div class="legend-item">
-              <div class="legend-dot" style="background: #22c55e;"></div>
-              <span>Approved</span>
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot" style="background: #ef4444;"></div>
-              <span>Cancelled</span>
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot" style="background: #f59e0b;"></div>
-              <span>Pending</span>
-            </div>
+            <div class="legend-item"><div class="legend-dot approved"></div>Approved</div>
+            <div class="legend-item"><div class="legend-dot rejected"></div>Rejected / Cancelled</div>
+            <div class="legend-item"><div class="legend-dot pending"></div>Pending Approval</div>
           </div>
-          <div class="days-header">${daysHeaderHtml}</div>
-          <div class="timeline">${resourceRowsHtml}</div>
+          <div class="timeline">
+            <div class="days-header">${daysHeaderHtml}</div>
+            ${resourceRowsHtml}
+          </div>
         </div>
-        <script>window.print(); window.close();</script>
+        <script>
+          window.onload = function() {
+            setTimeout(function() {
+              window.print();
+              window.onafterprint = function() { window.close(); };
+              // Fallback for browsers that don't support onafterprint or if it's already fired
+              if (!window.matchMedia('(print)').matches) {
+                // Keep window open for a short bit so user can see it's done
+                setTimeout(function() { if (!window.closed) window.close(); }, 2000);
+              }
+            }, 500);
+          };
+        </script>
       </body>
       </html>
     `)
@@ -342,8 +327,8 @@ const GanttTimeline = ({ bookings, resources }) => {
           <p className="text-sm text-gray-500 dark:text-gray-400">Approved</p>
         </div>
         <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-4">
-          <p className="text-2xl font-bold text-red-600">{cancelledCount}</p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Cancelled</p>
+          <p className="text-2xl font-bold text-red-600">{cancelledCount + (filteredBookings.filter(b => b.status === 'REJECTED').length)}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Cancelled/Rejected</p>
         </div>
         <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-4">
           <p className="text-2xl font-bold text-amber-600">{pendingCount}</p>
@@ -359,7 +344,7 @@ const GanttTimeline = ({ bookings, resources }) => {
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded bg-red-500"></div>
-          <span className="text-gray-700 dark:text-gray-300">Cancelled</span>
+          <span className="text-gray-700 dark:text-gray-300">Cancelled / Rejected</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded bg-amber-500"></div>
@@ -559,13 +544,13 @@ export default function Dashboard() {
       const statusCounts = {
         APPROVED: bookings.filter(b => b.status === 'APPROVED').length,
         PENDING: bookings.filter(b => b.status === 'PENDING').length,
-        REJECTED: bookings.filter(b => b.status === 'REJECTED').length,
+        REJECTED: bookings.filter(b => ['REJECTED', 'CANCELLED'].includes(b.status)).length,
       }
       
       const pieData = [
         { name: 'Approved', value: statusCounts.APPROVED || 0 },
         { name: 'Pending', value: statusCounts.PENDING || 0 },
-        { name: 'Rejected', value: statusCounts.REJECTED || 0 },
+        { name: 'Rejected/Cancelled', value: statusCounts.REJECTED || 0 },
       ].filter(d => d.value > 0)
       setPieData(pieData.length > 0 ? pieData : [{ name: 'No Data', value: 1 }])
 
