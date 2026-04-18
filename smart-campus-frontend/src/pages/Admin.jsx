@@ -24,7 +24,7 @@ export default function Admin() {
         const ticketsList = tickets.data || []
         const usersList = users.data || []
 
-        // Calculate top resources by booking count
+        // Calculate top resources by booking counts
         const resourceUsage = {}
         bookingsList.forEach(booking => {
           if (booking.resourceId) {
@@ -33,7 +33,7 @@ export default function Admin() {
         })
 
         const topResources = Object.entries(resourceUsage)
-          .sort(([,a], [,b]) => b - a)
+          .sort(([, a], [, b]) => b - a)
           .slice(0, 5)
           .map(([resourceId, count]) => {
             const resource = resourcesList.find(r => r.id === resourceId)
@@ -59,7 +59,7 @@ export default function Admin() {
         const dailyData = {}
         const today = new Date()
         const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-        
+
         // Initialize last 14 days with 0
         for (let i = 13; i >= 0; i--) {
           const date = new Date(today)
@@ -67,7 +67,7 @@ export default function Admin() {
           const dayKey = days[date.getDay()] + ' ' + date.getDate()
           dailyData[dayKey] = 0
         }
-        
+
         bookingsList.forEach(booking => {
           if (booking.startTime) {
             const bookingDate = new Date(booking.startTime)
@@ -177,28 +177,28 @@ export default function Admin() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard 
-          number={stats?.totalBookings || 0} 
+        <StatCard
+          number={stats?.totalBookings || 0}
           label="Total Bookings"
           subtext={`${stats?.pendingBookings || 0} pending approval`}
           trendUp={false}
           icon={Calendar}
         />
-        <StatCard 
-          number={stats?.totalResources || 0} 
+        <StatCard
+          number={stats?.totalResources || 0}
           label="Total Resources"
           subtext={`${stats?.activeResources || 0} active`}
           trendUp={true}
           icon={Library}
         />
-        <StatCard 
-          number={stats?.openTickets || 0} 
+        <StatCard
+          number={stats?.openTickets || 0}
           label="Open Tickets"
           subtext={`${stats?.totalTickets || 0} total tickets`}
           trendUp={false}
           icon={AlertCircle}
         />
-        <StatCard 
+        <StatCard
           number={`${stats?.avgBookingDuration || 0}h`}
           label="Avg Duration"
           subtext="hours per booking"
@@ -218,10 +218,10 @@ export default function Admin() {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={stats?.hourlyBookings || []}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
-              <XAxis dataKey="hour" tickFormatter={(hour) => `${hour}:00`} axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontSize: 12}} />
-              <YAxis axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontSize: 12}} />
-              <Tooltip 
-                contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}
+              <XAxis dataKey="hour" tickFormatter={(hour) => `${hour}:00`} axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
+              <YAxis axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
+              <Tooltip
+                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
                 formatter={(value) => [`${value} bookings`, 'Count']}
               />
               <Bar dataKey="count" fill="#f97316" radius={[6, 6, 0, 0]} />
@@ -250,8 +250,8 @@ export default function Admin() {
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip 
-                contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}
+              <Tooltip
+                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -309,8 +309,8 @@ export default function Admin() {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip 
-                  contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}
+                <Tooltip
+                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
                 />
                 <Legend verticalAlign="bottom" height={36} />
               </PieChart>
@@ -332,10 +332,10 @@ export default function Admin() {
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={dailyChartData}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
-            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontSize: 12}} interval={2} />
-            <YAxis axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontSize: 12}} />
-            <Tooltip 
-              contentStyle={{borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'}}
+            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} interval={2} />
+            <YAxis axisLine={false} tickLine={false} tick={{ fill: '#9ca3af', fontSize: 12 }} />
+            <Tooltip
+              contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
               formatter={(value) => [`${value} bookings`, 'Count']}
             />
             <Line type="monotone" dataKey="bookings" stroke="#f97316" strokeWidth={3} dot={{ fill: '#f97316', r: 4 }} activeDot={{ r: 6 }} />

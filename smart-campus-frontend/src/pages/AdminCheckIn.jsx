@@ -10,7 +10,7 @@ export default function AdminCheckIn() {
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
   const [booking, setBooking] = useState(null)
-  const [verificationMethod, setVerificationMethod] = useState('qr') // 'qr' or 'id'
+  const [verificationMethod, setVerificationMethod] = useState('qr') // 'qr' or 'id' both
 
   const handleQRVerify = async (e) => {
     e.preventDefault()
@@ -23,9 +23,9 @@ export default function AdminCheckIn() {
       setLoading(true)
       setError(null)
       setSuccess(null)
-      
+
       const response = await qrCodeAPI.verifyQRCode(qrContent)
-      
+
       if (response.data.valid) {
         setBooking(response.data.booking)
         setSuccess('QR code verified successfully!')
@@ -50,9 +50,9 @@ export default function AdminCheckIn() {
       setLoading(true)
       setError(null)
       setSuccess(null)
-      
+
       const response = await qrCodeAPI.verifyBookingById(bookingId)
-      
+
       if (response.data.valid) {
         setBooking(response.data.booking)
         setSuccess('Booking found successfully!')
@@ -104,22 +104,20 @@ export default function AdminCheckIn() {
           <div className="flex space-x-4 mb-6">
             <button
               onClick={() => setVerificationMethod('qr')}
-              className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
-                verificationMethod === 'qr'
+              className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${verificationMethod === 'qr'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
+                }`}
             >
               <QrCode size={20} className="inline mr-2" />
               QR Code Verification
             </button>
             <button
               onClick={() => setVerificationMethod('id')}
-              className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
-                verificationMethod === 'id'
+              className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${verificationMethod === 'id'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
+                }`}
             >
               <Search size={20} className="inline mr-2" />
               Booking ID Search
@@ -200,11 +198,10 @@ export default function AdminCheckIn() {
             <div className="bg-blue-50 p-4 rounded-lg mb-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-gray-600">Status</span>
-                <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                  booking.status === 'APPROVED' ? 'bg-green-100 text-green-800' :
-                  booking.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' :
-                  'bg-red-100 text-red-800'
-                }`}>
+                <span className={`px-3 py-1 rounded-full text-sm font-semibold ${booking.status === 'APPROVED' ? 'bg-green-100 text-green-800' :
+                    booking.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-red-100 text-red-800'
+                  }`}>
                   {booking.status}
                 </span>
               </div>
@@ -262,9 +259,9 @@ export default function AdminCheckIn() {
                     <span className="text-sm font-medium text-gray-600">QR Code</span>
                   </div>
                   <div className="bg-white p-3 rounded-lg text-center">
-                    <img 
-                      src={booking.qrCode} 
-                      alt="Booking QR Code" 
+                    <img
+                      src={booking.qrCode}
+                      alt="Booking QR Code"
                       className="w-32 h-32 mx-auto border border-gray-200 rounded"
                     />
                   </div>
