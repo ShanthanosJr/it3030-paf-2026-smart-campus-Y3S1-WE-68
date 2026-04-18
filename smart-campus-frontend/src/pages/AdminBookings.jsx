@@ -90,11 +90,10 @@ export default function AdminBookings() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-4 py-2 rounded-xl font-medium transition-colors ${
-              filter === f
+            className={`px-4 py-2 rounded-xl font-medium transition-colors ${filter === f
                 ? 'bg-orange-500 text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
-            }`}
+              }`}
           >
             {f}
           </button>
@@ -160,7 +159,7 @@ export default function AdminBookings() {
         </table>
       </div>
 
-      {/* Booking Details Modal */}
+      {/* Booking Details Modal.. */}
       {showModal && selectedBooking && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
@@ -246,7 +245,7 @@ export default function AdminBookings() {
                 <div className="p-3 bg-red-50 rounded-xl border border-red-100">
                   <p className="text-sm font-medium text-red-600 mb-1">
                     {selectedBooking.status === 'REJECTED' ? 'Rejection Reason' :
-                     selectedBooking.status === 'CANCELLED' ? 'Cancellation Reason' : 'Reason'}
+                      selectedBooking.status === 'CANCELLED' ? 'Cancellation Reason' : 'Reason'}
                   </p>
                   <p className="font-semibold text-red-900">{selectedBooking.reason}</p>
                 </div>
