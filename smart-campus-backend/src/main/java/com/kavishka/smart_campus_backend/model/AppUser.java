@@ -19,6 +19,6 @@ public class AppUser {
     private String department;
     private String building;
     private String googleSub;
-    private String role = "USER"; // USER, ADMIN, TECHNICIAN
+    private String role = "USER"; // USER, ADMIN, TECHNICIAN Roles
     private String profileImage; // URL/path to profile image
 }

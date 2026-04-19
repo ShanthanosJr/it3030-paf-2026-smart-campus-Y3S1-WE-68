@@ -260,8 +260,7 @@ export default function LandingPage() {
           </div>
           {/* Image */}
           <img
-            src="https://res.cloudinary.com/djqnlrrrw/image/upload/v1775646381/FireShot_Capture_231_-_Smart_Campus_-_Resource_Management_System_-_localhost_rjgczy.png
-"
+            src="https://res.cloudinary.com/dc0cujoji/image/upload/v1776612851/Screenshot_2026-04-19_at_21.02.59_yyapmj.png"
             alt="Smart Campus Dashboard"
             loading="lazy"
             className="w-full h-auto object-cover rounded-b-2xl border border-gray-200 border-t-0 shadow-2xl shadow-orange-100"
@@ -727,7 +726,7 @@ export default function LandingPage() {
               <h3 className="text-lg font-bold text-gray-900 mb-2 font-['Helvetica Neue']">Call Us</h3>
               <p className="text-gray-500 text-sm mb-4">Mon-Fri from 8am to 6pm</p>
               <a href="tel:+94112345678" className="text-orange-600 font-medium hover:text-orange-700 transition-colors">
-                +94 11 234 5678
+                +94 71 429 8544
               </a>
             </motion.div>
 
@@ -875,7 +874,7 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-center gap-2 text-gray-400 text-sm">
                   <MapPin className="w-4 h-4 text-orange-500" />
-                  Sri Lanka Institute of Information Technology
+                  Smart Campus, Sri Lanka
                 </li>
               </ul>
             </div>
