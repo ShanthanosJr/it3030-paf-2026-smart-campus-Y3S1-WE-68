@@ -21,14 +21,14 @@ export default function Sidebar() {
   const isTechnician = user?.authorities?.some(auth => auth.authority === 'ROLE_TECHNICIAN')
 
   const handleLogout = async () => {
-    // First navigate to home page
+    // First navigate to the home page
     navigate('/')
     // Clear auth state
     logout()
     // Show success toast
     toast.success('Logged out successfully')
     // Call backend logout (fire and forget - don't wait for response)
-    fetch('http://localhost:8080/logout', { credentials: 'include', mode: 'no-cors' }).catch(() => {})
+    fetch('http://localhost:8080/logout', { credentials: 'include', mode: 'no-cors' }).catch(() => { })
   }
 
   const isActive = (path) => location.pathname === path
@@ -63,15 +63,14 @@ export default function Sidebar() {
         title={item.name}
       >
         <div
-          className={`p-3 rounded-xl transition-all duration-200 ${
-            active
+          className={`p-3 rounded-xl transition-all duration-200 ${active
               ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
-          }`}
+            }`}
         >
           <Icon size={22} strokeWidth={active ? 2.5 : 2} />
         </div>
-        {/* Tooltip */}
+        {/* Tooltip for the menu items */}
         <div className="absolute left-full ml-3 px-3 py-1.5 bg-gray-900 text-white text-sm font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 shadow-lg">
           {item.name}
           <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45" />
@@ -84,14 +83,14 @@ export default function Sidebar() {
     <div className="w-20 bg-white border-r border-gray-200 flex flex-col h-screen sticky top-0">
       {/* Logo */}
       <div className="h-16 flex items-center justify-center border-b border-gray-100">
-        <img 
+        <img
           src="https://i.pinimg.com/1200x/7e/f6/9e/7ef69e2c667f0e9a53d69151a0071fb8.jpg"
           alt="Smart Campus Logo"
           className="w-10 h-10 object-contain rounded-lg"
         />
       </div>
 
-      {/* Navigation */}
+      {/* Navigation for the menu items */}
       <nav className="flex-1 py-6 space-y-1 overflow-y-auto">
         {menuItems.map(item => <NavItem key={item.path} item={item} />)}
 

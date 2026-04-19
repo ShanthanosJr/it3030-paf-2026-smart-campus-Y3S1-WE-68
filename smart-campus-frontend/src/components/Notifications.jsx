@@ -15,8 +15,8 @@ export default function Notifications() {
   useEffect(() => {
     fetchNotifications()
     fetchUnreadCount()
-    
-    // Poll for new notifications every 30 seconds
+
+    // Poll for new notifications every 30 seconds...
     const interval = setInterval(() => {
       fetchUnreadCount()
     }, 30000)
@@ -56,7 +56,7 @@ export default function Notifications() {
   const markAsRead = async (id) => {
     try {
       await notificationAPI.markAsRead(id)
-      setNotifications(notifications.map(n => 
+      setNotifications(notifications.map(n =>
         n.id === id ? { ...n, isRead: true } : n
       ))
       setUnreadCount(Math.max(0, unreadCount - 1))
@@ -79,17 +79,17 @@ export default function Notifications() {
   }
 
   const handleNotificationClick = async (notification) => {
-    // Mark as read if unread
+    // Mark as read if unread..
     if (!notification.isRead) {
       await markAsRead(notification.id)
     }
-    
+
     // Navigate to related entity based on notification type
     if (notification.relatedId) {
       const message = notification.message.toLowerCase()
       let targetPath = ''
       let itemType = ''
-      
+
       // Determine the target path based on notification content
       if (message.includes('ticket')) {
         targetPath = `/tickets/${notification.relatedId}`
@@ -105,14 +105,14 @@ export default function Notifications() {
         targetPath = '/dashboard'
         itemType = 'Item'
       }
-      
+
       // Show toast with navigation info
       toast.success(`Opening ${itemType} #${notification.relatedId}`, {
         description: notification.message,
         icon: <ArrowRight size={16} />,
         duration: 2000,
       })
-      
+
       // Close dropdown and navigate
       setIsOpen(false)
       navigate(targetPath)
@@ -134,7 +134,7 @@ export default function Notifications() {
     const date = new Date(timestamp)
     const now = new Date()
     const diffInHours = Math.floor((now - date) / (1000 * 60 * 60))
-    
+
     if (diffInHours < 1) {
       const diffInMinutes = Math.floor((now - date) / (1000 * 60))
       return diffInMinutes < 1 ? 'Just now' : `${diffInMinutes}m ago`
@@ -268,9 +268,8 @@ export default function Notifications() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05 }}
-                        className={`group p-4 hover:bg-gray-50/80 transition-all duration-300 cursor-pointer ${
-                          !notification.isRead ? 'bg-gradient-to-r from-orange-50/50 to-white' : ''
-                        }`}
+                        className={`group p-4 hover:bg-gray-50/80 transition-all duration-300 cursor-pointer ${!notification.isRead ? 'bg-gradient-to-r from-orange-50/50 to-white' : ''
+                          }`}
                         onClick={() => handleNotificationClick(notification)}
                       >
                         <div className="flex items-start gap-3">
