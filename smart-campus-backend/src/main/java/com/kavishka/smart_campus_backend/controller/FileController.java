@@ -35,7 +35,7 @@ public class FileController {
                 try {
                     contentType = Files.probeContentType(filePath);
                 } catch (Exception e) {
-                    // Use default content type
+                    // Use default content type ...
                 }
 
                 return ResponseEntity.ok()

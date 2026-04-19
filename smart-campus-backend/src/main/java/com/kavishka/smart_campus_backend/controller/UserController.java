@@ -67,7 +67,7 @@ public class UserController {
         AppUser user = repository.findByEmail(principal.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
         
-        // Update user fields based on provided data
+        // Update user fields based on provided data ...
         if (data.containsKey("name")) {
             user.setName(data.get("name"));
         }
@@ -81,7 +81,7 @@ public class UserController {
             user.setBuilding(data.get("building"));
         }
         
-        // Save updated user to database
+        // Save updated user to database ...
         AppUser savedUser = repository.save(user);
         
         Map<String, Object> response = new HashMap<>();
