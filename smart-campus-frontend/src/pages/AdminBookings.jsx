@@ -91,8 +91,8 @@ export default function AdminBookings() {
             key={f}
             onClick={() => setFilter(f)}
             className={`px-4 py-2 rounded-xl font-medium transition-colors ${filter === f
-                ? 'bg-orange-500 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+              ? 'bg-orange-500 text-white'
+              : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
               }`}
           >
             {f}
@@ -174,7 +174,7 @@ export default function AdminBookings() {
               </button>
             </div>
 
-            {/* Modal Content */}
+            {/* Modal Content ... */}
             <div className="p-6 space-y-4">
               {/* Status Badge */}
               <div className="flex items-center justify-between">
@@ -184,7 +184,7 @@ export default function AdminBookings() {
                 </Badge>
               </div>
 
-              {/* User ID */}
+              {/* User ID ... */}
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                 <User size={20} className="text-gray-400" />
                 <div>

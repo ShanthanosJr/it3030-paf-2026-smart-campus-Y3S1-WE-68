@@ -76,7 +76,7 @@ export default function NotificationPreferences() {
       await notificationPreferencesAPI.patch({ [key]: newValue })
       toast.success(`${categories.find((c) => c.key === key)?.label || key} ${newValue ? 'enabled' : 'disabled'}`)
     } catch (err) {
-      // Revert on error
+      // Revert on error .. 
       setPreferences((prev) => ({ ...prev, [key]: !newValue }))
       toast.error('Failed to update preference')
     }
@@ -135,11 +135,11 @@ export default function NotificationPreferences() {
 
   return (
     <div className="space-y-6">
-      {/* Master Controls */}
+      {/* Master Controls .. */}
       <div className="card">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Notification Channels</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Email Notifications */}
+          {/* Email Notifications .. */}
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
@@ -152,19 +152,17 @@ export default function NotificationPreferences() {
             </div>
             <button
               onClick={() => handleMasterToggle('emailNotifications')}
-              className={`relative w-12 h-6 rounded-full transition-colors ${
-                preferences.emailNotifications ? 'bg-orange-500' : 'bg-gray-300'
-              }`}
+              className={`relative w-12 h-6 rounded-full transition-colors ${preferences.emailNotifications ? 'bg-orange-500' : 'bg-gray-300'
+                }`}
             >
               <span
-                className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
-                  preferences.emailNotifications ? 'translate-x-6' : 'translate-x-0'
-                }`}
+                className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${preferences.emailNotifications ? 'translate-x-6' : 'translate-x-0'
+                  }`}
               />
             </button>
           </div>
 
-          {/* Push Notifications */}
+          {/* Push Notifications .. */}
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-purple-100 text-purple-600 rounded-lg">
@@ -177,14 +175,12 @@ export default function NotificationPreferences() {
             </div>
             <button
               onClick={() => handleMasterToggle('pushNotifications')}
-              className={`relative w-12 h-6 rounded-full transition-colors ${
-                preferences.pushNotifications ? 'bg-orange-500' : 'bg-gray-300'
-              }`}
+              className={`relative w-12 h-6 rounded-full transition-colors ${preferences.pushNotifications ? 'bg-orange-500' : 'bg-gray-300'
+                }`}
             >
               <span
-                className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
-                  preferences.pushNotifications ? 'translate-x-6' : 'translate-x-0'
-                }`}
+                className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${preferences.pushNotifications ? 'translate-x-6' : 'translate-x-0'
+                  }`}
               />
             </button>
           </div>
@@ -202,15 +198,13 @@ export default function NotificationPreferences() {
             return (
               <div
                 key={category.key}
-                className={`flex items-center justify-between p-4 rounded-xl transition-all ${
-                  isEnabled ? 'bg-orange-50/50 border border-orange-100' : 'bg-gray-50 border border-gray-100'
-                }`}
+                className={`flex items-center justify-between p-4 rounded-xl transition-all ${isEnabled ? 'bg-orange-50/50 border border-orange-100' : 'bg-gray-50 border border-gray-100'
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <div
-                    className={`p-2 rounded-lg ${
-                      isEnabled ? 'bg-orange-100 text-orange-600' : 'bg-gray-200 text-gray-500'
-                    }`}
+                    className={`p-2 rounded-lg ${isEnabled ? 'bg-orange-100 text-orange-600' : 'bg-gray-200 text-gray-500'
+                      }`}
                   >
                     <Icon size={20} />
                   </div>
@@ -222,18 +216,15 @@ export default function NotificationPreferences() {
                 <button
                   onClick={() => handleToggle(category.key)}
                   disabled={!preferences.emailNotifications && !preferences.pushNotifications}
-                  className={`relative w-12 h-6 rounded-full transition-colors ${
-                    isEnabled ? 'bg-orange-500' : 'bg-gray-300'
-                  } ${
-                    !preferences.emailNotifications && !preferences.pushNotifications
+                  className={`relative w-12 h-6 rounded-full transition-colors ${isEnabled ? 'bg-orange-500' : 'bg-gray-300'
+                    } ${!preferences.emailNotifications && !preferences.pushNotifications
                       ? 'opacity-50 cursor-not-allowed'
                       : ''
-                  }`}
+                    }`}
                 >
                   <span
-                    className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${
-                      isEnabled ? 'translate-x-6' : 'translate-x-0'
-                    }`}
+                    className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${isEnabled ? 'translate-x-6' : 'translate-x-0'
+                      }`}
                   />
                 </button>
               </div>

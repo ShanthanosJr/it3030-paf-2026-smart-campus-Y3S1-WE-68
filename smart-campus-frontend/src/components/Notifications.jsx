@@ -101,7 +101,7 @@ export default function Notifications() {
         targetPath = `/resources/${notification.relatedId}`
         itemType = 'Resource'
       } else {
-        // Default fallback - try to infer from context or go to dashboard
+        // Default fallback - (try to infer from context or go to dashboard)
         targetPath = '/dashboard'
         itemType = 'Item'
       }
@@ -117,7 +117,7 @@ export default function Notifications() {
       setIsOpen(false)
       navigate(targetPath)
     } else {
-      // No related ID - navigate to general list based on type
+      // No related ID - (navigate to general list based on type)
       const message = notification.message.toLowerCase()
       if (message.includes('ticket')) {
         navigate('/tickets')
@@ -147,7 +147,7 @@ export default function Notifications() {
 
   const getNotificationIcon = (message) => {
     const msg = message.toLowerCase()
-    // All icons use orange theme to match overall design
+    // All icons use orange theme to match overall design .. 
     if (msg.includes('ticket')) return { icon: Ticket, bgColor: 'bg-orange-100', textColor: 'text-orange-600' }
     if (msg.includes('booking') || msg.includes('booked') || msg.includes('schedule')) return { icon: Calendar, bgColor: 'bg-amber-100', textColor: 'text-amber-600' }
     if (msg.includes('approved') || msg.includes('accepted') || msg.includes('confirmed')) return { icon: Check, bgColor: 'bg-yellow-100', textColor: 'text-yellow-600' }
@@ -169,7 +169,7 @@ export default function Notifications() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Bell Button with Animated Badge */}
+      {/* Bell Button with Animated Badges */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}

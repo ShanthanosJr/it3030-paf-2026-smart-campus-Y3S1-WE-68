@@ -24,7 +24,7 @@ export default function Admin() {
         const ticketsList = tickets.data || []
         const usersList = users.data || []
 
-        // Calculate top resources by booking counts
+        // Calculate top resources by booking counts ...
         const resourceUsage = {}
         bookingsList.forEach(booking => {
           if (booking.resourceId) {
@@ -44,7 +44,7 @@ export default function Admin() {
             }
           })
 
-        // Calculate peak booking hours
+        // Calculate peak booking hours ...
         const hourlyBookings = Array.from({ length: 24 }, (_, i) => ({ hour: i, count: 0 }))
         bookingsList.forEach(booking => {
           if (booking.startTime) {
@@ -55,12 +55,12 @@ export default function Admin() {
           }
         })
 
-        // Calculate daily trends (last 14 days)
+        // Calculate daily trends (last 14 days) ...
         const dailyData = {}
         const today = new Date()
         const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-        // Initialize last 14 days with 0
+        // Initialize last 14 days with 0 ...
         for (let i = 13; i >= 0; i--) {
           const date = new Date(today)
           date.setDate(date.getDate() - i)

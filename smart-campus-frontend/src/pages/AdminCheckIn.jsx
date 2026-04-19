@@ -105,8 +105,8 @@ export default function AdminCheckIn() {
             <button
               onClick={() => setVerificationMethod('qr')}
               className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${verificationMethod === 'qr'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
             >
               <QrCode size={20} className="inline mr-2" />
@@ -115,8 +115,8 @@ export default function AdminCheckIn() {
             <button
               onClick={() => setVerificationMethod('id')}
               className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${verificationMethod === 'id'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
             >
               <Search size={20} className="inline mr-2" />
@@ -181,7 +181,7 @@ export default function AdminCheckIn() {
           )}
         </div>
 
-        {/* Booking Details */}
+        {/* Booking Details ... */}
         {booking && (
           <div className="card">
             <div className="flex items-center justify-between mb-6">
@@ -194,13 +194,13 @@ export default function AdminCheckIn() {
               </button>
             </div>
 
-            {/* Status Badge */}
+            {/* Status Badge ... */}
             <div className="bg-blue-50 p-4 rounded-lg mb-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-gray-600">Status</span>
                 <span className={`px-3 py-1 rounded-full text-sm font-semibold ${booking.status === 'APPROVED' ? 'bg-green-100 text-green-800' :
-                    booking.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
+                  booking.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' :
+                    'bg-red-100 text-red-800'
                   }`}>
                   {booking.status}
                 </span>
@@ -208,7 +208,7 @@ export default function AdminCheckIn() {
             </div>
 
             <div className="space-y-4">
-              {/* User Info */}
+              {/* User Info ... */}
               <div className="bg-purple-50 p-4 rounded-lg">
                 <div className="flex items-center mb-1">
                   <User size={16} className="text-purple-600 mr-2" />
