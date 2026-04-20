@@ -24,13 +24,13 @@ public class BookingService {
         booking.setUserId(userId);
         booking.setStatus("PENDING");
         
-        // Check for conflicts and provide detailed error message
+        // Check for conflicts and provide detailed error message ...
         String conflictInfo = getConflictInfo(booking);
         if (conflictInfo != null) {
             throw new RuntimeException(conflictInfo);
         }
         
-        // Check capacity constraints
+        // Check capacity constraints ...
         String capacityError = validateCapacity(booking);
         if (capacityError != null) {
             throw new RuntimeException(capacityError);
@@ -52,13 +52,13 @@ public class BookingService {
         booking.setUserId(userId);
         booking.setStatus("PENDING");
         
-        // Check for conflicts and provide detailed error message
+        // Check for conflicts and provide detailed error message ...
         String conflictInfo = getConflictInfo(booking);
         if (conflictInfo != null) {
             throw new RuntimeException(conflictInfo);
         }
         
-        // Check capacity constraints
+        // Check capacity constraints ...
         String capacityError = validateCapacity(booking);
         if (capacityError != null) {
             throw new RuntimeException(capacityError);
