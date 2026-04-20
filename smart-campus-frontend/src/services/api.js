@@ -7,13 +7,13 @@ const api = axios.create({
   withCredentials: true,
 })
 
-// Auth API
+// Auth API ...
 export const authAPI = {
   getCurrentUser: () => api.get('/api/auth/me'),
   logout: () => api.post('/api/auth/logout'),
 }
 
-// Resources API
+// Resources API ...
 export const resourceAPI = {
   getAll: (params) => api.get('/api/resources', { params }),
   search: (type, capacity, location) =>
@@ -24,7 +24,7 @@ export const resourceAPI = {
   delete: (id) => api.delete(`/api/resources/${id}`),
 }
 
-// Bookings API
+// Bookings API ...
 export const bookingAPI = {
   create: (data) => api.post('/api/bookings', data),
   update: (id, data) => api.put(`/api/bookings/${id}`, data),
@@ -36,7 +36,7 @@ export const bookingAPI = {
   cancel: (id, reason) => api.patch(`/api/bookings/${id}/cancel`, { reason }),
 }
 
-// Tickets API
+// Tickets API ...
 export const ticketAPI = {
   create: (data, files) => {
     const formData = new FormData()
@@ -59,7 +59,7 @@ export const ticketAPI = {
   getMyTickets: () => api.get('/api/tickets/my'),
 }
 
-// Notifications API
+// Notifications API ...
 export const notificationAPI = {
   getAll: () => api.get('/api/notifications'),
   getUnread: () => api.get('/api/notifications/unread'),
@@ -67,7 +67,7 @@ export const notificationAPI = {
   delete: (id) => api.delete(`/api/notifications/${id}`),
 }
 
-// Notification Preferences API
+// Notification Preferences API ...
 export const notificationPreferencesAPI = {
   get: () => api.get('/api/notification-preferences'),
   update: (data) => api.put('/api/notification-preferences', data),
