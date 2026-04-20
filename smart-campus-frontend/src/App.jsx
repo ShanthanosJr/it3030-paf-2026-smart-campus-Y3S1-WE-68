@@ -51,6 +51,7 @@ function App() {
     )
   }
 
+  // check if user is admin or technician
   const isAdmin = user?.authorities?.some(auth => auth.authority === 'ROLE_ADMIN')
   const isTechnician = user?.authorities?.some(auth => auth.authority === 'ROLE_TECHNICIAN')
 
@@ -60,7 +61,7 @@ function App() {
     }
     return <Component {...rest} />
   }
-
+  // check if user is admin
   const AdminRoute = ({ component: Component, ...rest }) => {
     if (!user) {
       return <Navigate to="/login" />
@@ -70,7 +71,7 @@ function App() {
     }
     return <Component {...rest} />
   }
-
+  // check if user is technician
   const TechnicianRoute = ({ component: Component, ...rest }) => {
     if (!user) {
       return <Navigate to="/login" />
@@ -80,7 +81,7 @@ function App() {
     }
     return <Component {...rest} />
   }
-
+  // routes
   return (
     <>
       <Toaster
@@ -100,38 +101,38 @@ function App() {
       />
       <Router>
         <Routes>
-        <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
-        
-        {/* Landing page - full page without layout */}
-        <Route path="/" element={user ? <Navigate to="/dashboard" /> : <LandingPage />} />
+          <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
 
-        <Route element={<Layout />}>
-          <Route path="/dashboard" element={<ProtectedRoute component={Dashboard} />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/resources/:id" element={<ResourceDetail />} />
-          <Route path="/bookings" element={<ProtectedRoute component={Bookings} />} />
-          <Route path="/bookings/:id" element={<ProtectedRoute component={BookingDetail} />} />
-          <Route path="/booking/new" element={<ProtectedRoute component={BookingForm} />} />
-          <Route path="/booking/:id/edit" element={<ProtectedRoute component={BookingForm} />} />
-          <Route path="/tickets" element={<ProtectedRoute component={Tickets} />} />
-          <Route path="/tickets/:id" element={<ProtectedRoute component={TicketDetail} />} />
-          <Route path="/ticket/new" element={<ProtectedRoute component={TicketForm} />} />
-          <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
+          {/* Landing page - full page without layout */}
+          <Route path="/" element={user ? <Navigate to="/dashboard" /> : <LandingPage />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin" element={<AdminRoute component={Admin} />} />
-          <Route path="/admin/checkin" element={<AdminRoute component={AdminCheckIn} />} />
-          <Route path="/admin/resources" element={<AdminRoute component={AdminResources} />} />
-          <Route path="/admin/bookings" element={<AdminRoute component={AdminBookings} />} />
-          <Route path="/admin/tickets" element={<AdminRoute component={AdminTickets} />} />
-          <Route path="/admin/users" element={<AdminRoute component={AdminUsers} />} />
+          <Route element={<Layout />}>
+            <Route path="/dashboard" element={<ProtectedRoute component={Dashboard} />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/:id" element={<ResourceDetail />} />
+            <Route path="/bookings" element={<ProtectedRoute component={Bookings} />} />
+            <Route path="/bookings/:id" element={<ProtectedRoute component={BookingDetail} />} />
+            <Route path="/booking/new" element={<ProtectedRoute component={BookingForm} />} />
+            <Route path="/booking/:id/edit" element={<ProtectedRoute component={BookingForm} />} />
+            <Route path="/tickets" element={<ProtectedRoute component={Tickets} />} />
+            <Route path="/tickets/:id" element={<ProtectedRoute component={TicketDetail} />} />
+            <Route path="/ticket/new" element={<ProtectedRoute component={TicketForm} />} />
+            <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
 
-          {/* Technician Routes */}
-          <Route path="/technician/tickets" element={<TechnicianRoute component={TechnicianTickets} />} />
-        </Route>
-      </Routes>
-    </Router>
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminRoute component={Admin} />} />
+            <Route path="/admin/checkin" element={<AdminRoute component={AdminCheckIn} />} />
+            <Route path="/admin/resources" element={<AdminRoute component={AdminResources} />} />
+            <Route path="/admin/bookings" element={<AdminRoute component={AdminBookings} />} />
+            <Route path="/admin/tickets" element={<AdminRoute component={AdminTickets} />} />
+            <Route path="/admin/users" element={<AdminRoute component={AdminUsers} />} />
+
+            {/* Technician Routes */}
+            <Route path="/technician/tickets" element={<TechnicianRoute component={TechnicianTickets} />} />
+          </Route>
+        </Routes>
+      </Router>
     </>
   )
 }

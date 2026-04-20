@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { authAPI } from '../services/api'
 
+// create auth store
 export const useAuthStore = create((set) => ({
   user: null,
   loading: false,
