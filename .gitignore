@@ -1,12 +1,12 @@
-# IDE and OS files
+# IDE and OS files.
 .DS_Store
 .vscode/
 .idea/
 *.swp
 *.log
 
-# Sub-components are handled by their own .gitignore files
-# but we add some blanket rules just in case
+# Sub-components are handled by their own .gitignore files...
+# but we add some blanket rules just in case...
 node_modules/
 target/
 dist/
