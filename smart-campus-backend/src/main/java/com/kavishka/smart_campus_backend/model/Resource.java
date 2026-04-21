@@ -18,11 +18,11 @@ public class Resource {
     @NotBlank
     private String name;
     @NotBlank
-    private String type; // LECTURE_HALL, LAB, MEETING_ROOM, EQUIPMENT
+    private String type; // LECTURE_HALL, LAB, MEETING_ROOM, EQUIPMENT ...
     @Min(1)
     private int capacity;
     @NotBlank
     private String location;
     private String availabilityWindows;
-    private String status = "ACTIVE"; // ACTIVE, OUT_OF_SERVICE
+    private String status = "ACTIVE"; // ACTIVE, OUT_OF_SERVICE ...
 }
