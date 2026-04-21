@@ -42,8 +42,8 @@ This project was developed as part of the **IT3030 PAF Assignment 2026**.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/ShanthanosJr/Smart_Campus.git
-cd Smart_Campus
+git clone https://github.com/ShanthanosJr/it3030-paf-2026-smart-campus-Y3S1-WE-68.git
+cd it3030-paf-2026-smart-campus-Y3S1-WE-68
 ```
 
 ### 2. Configure Environment Variables
