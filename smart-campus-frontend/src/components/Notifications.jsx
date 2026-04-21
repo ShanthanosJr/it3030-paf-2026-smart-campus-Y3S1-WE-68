@@ -169,7 +169,7 @@ export default function Notifications() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Bell Button with Animated Badges */}
+      {/* Bell Button with Animated Badges ... */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
@@ -191,7 +191,7 @@ export default function Notifications() {
         </AnimatePresence>
       </motion.button>
 
-      {/* Notification Dropdown */}
+      {/* Notification Dropdown ... */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -241,7 +241,7 @@ export default function Notifications() {
               </div>
             </div>
 
-            {/* Notifications List */}
+            {/* Notifications List ... */}
             <div className="max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
               {notifications.length === 0 ? (
                 <motion.div
@@ -273,12 +273,12 @@ export default function Notifications() {
                         onClick={() => handleNotificationClick(notification)}
                       >
                         <div className="flex items-start gap-3">
-                          {/* Icon */}
+                          {/* Icon ... */}
                           <div className={`p-2.5 ${bgColor} rounded-xl shrink-0 transition-transform group-hover:scale-110`}>
                             <Icon size={18} className={textColor} />
                           </div>
 
-                          {/* Content */}
+                          {/* Content ... */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between gap-2">
                               <p className={`text-sm leading-relaxed ${!notification.isRead ? 'font-semibold text-gray-900' : 'text-gray-700'}`}>
@@ -293,7 +293,7 @@ export default function Notifications() {
                             </p>
                           </div>
 
-                          {/* Click indicator - shows on hover */}
+                          {/* Click indicator - shows on hover ... */}
                           <motion.div
                             initial={{ opacity: 0, x: -10 }}
                             whileHover={{ opacity: 1, x: 0 }}
