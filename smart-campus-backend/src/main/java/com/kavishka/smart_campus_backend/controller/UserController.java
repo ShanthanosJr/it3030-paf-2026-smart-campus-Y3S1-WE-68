@@ -136,10 +136,10 @@ public class UserController {
             AppUser user = repository.findByEmail(principal.getEmail())
                     .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-            // Store the file and get the relative path
+            // Store the file and get the relative path ...
             String filePath = fileStorageService.storeProfileImage(file, user.getId());
 
-            // Update user with profile image path
+            // Update user with profile image path ...
             user.setProfileImage(filePath);
             AppUser savedUser = repository.save(user);
 

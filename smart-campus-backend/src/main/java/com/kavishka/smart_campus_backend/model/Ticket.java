@@ -31,6 +31,6 @@ public class Ticket {
     private String assignedTo;
     private String resolutionNotes;
     private List<Comment> comments = new ArrayList<>();
-    private List<String> attachments = new ArrayList<>(); // Store file paths/URLs
+    private List<String> attachments = new ArrayList<>(); // Store file paths/URLs ...
     private LocalDateTime createdAt = LocalDateTime.now();
 }

@@ -47,7 +47,7 @@ public class QRCodeController {
             String bookingId = parts[1];
             Booking booking = bookingService.getById(bookingId);
 
-            // Validate QR code content
+            // Validate QR code content ...
             boolean isValid = qrCodeService.validateQRCodeContent(qrContent, booking);
             
             Map<String, Object> response = new HashMap<>();
