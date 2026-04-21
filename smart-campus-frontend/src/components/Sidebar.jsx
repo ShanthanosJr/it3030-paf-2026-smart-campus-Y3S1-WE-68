@@ -64,13 +64,13 @@ export default function Sidebar() {
       >
         <div
           className={`p-3 rounded-xl transition-all duration-200 ${active
-              ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30'
-              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+            ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30'
+            : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
             }`}
         >
           <Icon size={22} strokeWidth={active ? 2.5 : 2} />
         </div>
-        {/* Tooltip for the menu items */}
+        {/* Tooltip for the menu items ... */}
         <div className="absolute left-full ml-3 px-3 py-1.5 bg-gray-900 text-white text-sm font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 shadow-lg">
           {item.name}
           <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45" />
@@ -90,7 +90,7 @@ export default function Sidebar() {
         />
       </div>
 
-      {/* Navigation for the menu items */}
+      {/* Navigation for the menu items ... */}
       <nav className="flex-1 py-6 space-y-1 overflow-y-auto">
         {menuItems.map(item => <NavItem key={item.path} item={item} />)}
 
@@ -109,7 +109,7 @@ export default function Sidebar() {
         )}
       </nav>
 
-      {/* Logout */}
+      {/* Logout ... */}
       <div className="border-t border-gray-100 p-4">
         <button
           onClick={handleLogout}
@@ -119,7 +119,7 @@ export default function Sidebar() {
           <div className="p-3 rounded-xl text-gray-500 hover:text-red-600 hover:bg-red-50 transition-all duration-200">
             <LogOut size={22} />
           </div>
-          {/* Tooltip */}
+          {/* Tooltip ... */}
           <div className="absolute left-full ml-3 px-3 py-1.5 bg-gray-900 text-white text-sm font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 shadow-lg">
             Logout
             <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45" />

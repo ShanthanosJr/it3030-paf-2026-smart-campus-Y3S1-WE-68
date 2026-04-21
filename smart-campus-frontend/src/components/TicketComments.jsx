@@ -47,7 +47,7 @@ export default function TicketComments({ ticketId, comments = [], onCommentAdded
         )}
       </div>
 
-      {/* Add Comment for the ticket */}
+      {/* Add Comment for the ticket ... */}
       <form onSubmit={handleAddComment} className="border-t border-gray-100 pt-4">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-2">Add a comment</label>
