@@ -59,7 +59,7 @@ export default function Resources() {
         <p className="text-gray-600 mt-2">Find and book available campus resources</p>
       </div>
 
-      {/* Search & Filters */}
+      {/* Search & Filters ...*/}
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
@@ -112,7 +112,7 @@ export default function Resources() {
 
       {error && <ErrorAlert message={error} />}
 
-      {/* Resources Grid */}
+      {/* Resources Grid ...*/}
       {resources.length === 0 ? (
         <div className="bg-white rounded-2xl shadow-sm text-center py-12">
           <p className="text-gray-600 text-lg">No resources found. Try adjusting your filters.</p>
@@ -123,9 +123,8 @@ export default function Resources() {
             <Link
               key={resource.id}
               to={`/resources/${resource.id}`}
-              className={`bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition-shadow cursor-pointer group ${
-                resource.status === 'OUT_OF_SERVICE' ? 'opacity-75' : ''
-              }`}
+              className={`bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition-shadow cursor-pointer group ${resource.status === 'OUT_OF_SERVICE' ? 'opacity-75' : ''
+                }`}
             >
               <div className="flex items-start justify-between mb-4">
                 <h3 className="text-xl font-bold text-gray-900 group-hover:text-orange-500 transition-colors flex items-center gap-2">
@@ -161,11 +160,10 @@ export default function Resources() {
                 </div>
               )}
 
-              <button className={`w-full mt-4 py-2.5 px-4 rounded-xl font-medium transition-colors ${
-                resource.status === 'ACTIVE' 
-                  ? 'bg-orange-500 text-white hover:bg-orange-600' 
+              <button className={`w-full mt-4 py-2.5 px-4 rounded-xl font-medium transition-colors ${resource.status === 'ACTIVE'
+                  ? 'bg-orange-500 text-white hover:bg-orange-600'
                   : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-              }`}>
+                }`}>
                 View Details
               </button>
             </Link>
