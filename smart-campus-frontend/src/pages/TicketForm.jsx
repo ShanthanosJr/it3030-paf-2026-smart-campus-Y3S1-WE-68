@@ -20,12 +20,12 @@ export default function TicketForm() {
     priority: 'MEDIUM',
     affectedUsers: 1,
   })
-  
+
   const [errors, setErrors] = useState({})
 
   const validateField = (name, value) => {
     const newErrors = { ...errors }
-    
+
     switch (name) {
       case 'title':
         if (!value || value.trim().length === 0) {
@@ -38,7 +38,7 @@ export default function TicketForm() {
           delete newErrors.title
         }
         break
-        
+
       case 'description':
         if (!value || value.trim().length === 0) {
           newErrors.description = 'Description is required'
@@ -50,7 +50,7 @@ export default function TicketForm() {
           delete newErrors.description
         }
         break
-        
+
       case 'location':
         if (!value || value.trim().length === 0) {
           newErrors.location = 'Location is required'
@@ -62,30 +62,30 @@ export default function TicketForm() {
           delete newErrors.location
         }
         break
-        
+
       case 'contactDetails':
         if (!value || value.trim().length === 0) {
           newErrors.contactDetails = 'Contact details are required'
         } else {
-          // Phone number validation - exactly 10 digits only
+          // Phone number validation - exactly 10 digits only ...
           const phoneRegex = /^\d{10}$/
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-          
+
           if (value.includes('@') && !emailRegex.test(value)) {
             newErrors.contactDetails = 'Please enter a valid email address'
           } else if (value.includes('ext') || value.includes('Ext')) {
-            // Valid extension format
+            // Valid extension format ...
             delete newErrors.contactDetails
           } else if (phoneRegex.test(value.trim())) {
-            // Valid 10-digit phone number format
+            // Valid 10-digit phone number format ...
             delete newErrors.contactDetails
           } else {
-            // Anything else is invalid for phone numbers
+            // Anything else is invalid for phone numbers ...
             newErrors.contactDetails = 'Phone number must be exactly 10 digits (no letters, spaces, dashes, or symbols)'
           }
         }
         break
-        
+
       case 'affectedUsers':
         const num = parseInt(value) || 1
         if (isNaN(num) || num < 1) {
@@ -97,14 +97,14 @@ export default function TicketForm() {
         }
         break
     }
-    
+
     setErrors(newErrors)
   }
 
   const handleChange = (e) => {
     const { name, value } = e.target
     validateField(name, value)
-    
+
     if (name === 'affectedUsers') {
       setFormData(prev => ({
         ...prev,
@@ -122,11 +122,11 @@ export default function TicketForm() {
       const isValidSize = file.size <= 10 * 1024 * 1024 // 10MB
       return isValidType && isValidSize
     })
-    
+
     if (validFiles.length !== selectedFiles.length) {
       setError('Some files were rejected. Only PNG, JPG, GIF, and PDF files up to 10MB are allowed.')
     }
-    
+
     setFiles(prev => [...prev, ...validFiles])
   }
 
@@ -136,17 +136,17 @@ export default function TicketForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    // Validate all fields
+
+    // Validate all fields ...
     validateField('title', formData.title)
     validateField('description', formData.description)
     validateField('location', formData.location)
     validateField('contactDetails', formData.contactDetails)
     validateField('affectedUsers', formData.affectedUsers.toString())
-    
-    // Check if there are any errors
+
+    // Check if there are any errors ...
     const hasErrors = Object.keys(errors).length > 0
-    
+
     if (hasErrors) {
       setError('Please fix the validation errors before submitting')
       return
@@ -336,7 +336,7 @@ export default function TicketForm() {
               </div>
             </label>
           </div>
-          
+
           {/* File List */}
           {files.length > 0 && (
             <div className="mt-3 space-y-2">

@@ -98,7 +98,7 @@ export default function ResourceDetail() {
             </div>
           </div>
 
-          {/* Booking Instructions */}
+          {/* Booking Instructions ...*/}
           <div className="card">
             <h2 className="text-lg font-bold text-gray-900 mb-4">How to Book</h2>
             <ol className="space-y-4">

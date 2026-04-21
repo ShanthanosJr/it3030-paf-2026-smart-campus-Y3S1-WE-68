@@ -9,7 +9,7 @@ export default function Tickets() {
   const [filteredTickets, setFilteredTickets] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  
+
   // Filter states
   const [statusFilter, setStatusFilter] = useState('ALL')
   const [priorityFilter, setPriorityFilter] = useState('ALL')
@@ -21,22 +21,22 @@ export default function Tickets() {
   }, [])
 
   useEffect(() => {
-    // Apply filters when tickets or filter states change
+    // Apply filters when tickets or filter states change ...
     let filtered = tickets
 
-    // Status filter
+    // Status filter ...
     if (statusFilter !== 'ALL') {
       filtered = filtered.filter(ticket => ticket.status === statusFilter)
     }
 
-    // Priority filter
+    // Priority filter ...
     if (priorityFilter !== 'ALL') {
       filtered = filtered.filter(ticket => ticket.priority === priorityFilter)
     }
 
-    // Search filter (search in title, description, and ID)
+    // Search filter (search in title, description, and ID) ...
     if (searchTerm) {
-      filtered = filtered.filter(ticket => 
+      filtered = filtered.filter(ticket =>
         ticket.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (ticket.description && ticket.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
         ticket.id.toLowerCase().includes(searchTerm.toLowerCase())

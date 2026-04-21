@@ -65,7 +65,7 @@ export default function TicketDetail() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
-          {/* Ticket Header */}
+          {/* Ticket Header ...*/}
           <div className="card">
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -86,7 +86,7 @@ export default function TicketDetail() {
               <p className="text-gray-700">{ticket.description}</p>
             </div>
 
-            {/* Attachments Section */}
+            {/* Attachments Section ...*/}
             {ticket.attachments && ticket.attachments.length > 0 && (
               <div className="mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
@@ -139,7 +139,7 @@ export default function TicketDetail() {
             </div>
           </div>
 
-          {/* Comments Section */}
+          {/* Comments Section ...*/}
           <TicketComments
             ticketId={ticket.id}
             comments={ticket.comments || []}
@@ -147,7 +147,7 @@ export default function TicketDetail() {
           />
         </div>
 
-        {/* Sidebar */}
+        {/* Sidebar ...*/}
         <div className="card h-fit sticky top-6">
           <h2 className="text-lg font-bold text-gray-900 mb-4">Ticket Details</h2>
           <div className="space-y-4">
