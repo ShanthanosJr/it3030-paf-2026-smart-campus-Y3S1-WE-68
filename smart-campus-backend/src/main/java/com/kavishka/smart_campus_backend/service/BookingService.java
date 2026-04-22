@@ -112,7 +112,7 @@ public class BookingService {
         b.setApprovedBy(adminId);
         
         System.out.println("Generating QR code for approved booking...");
-        // Generate QR code for approved booking
+        // Generate QR code for approved booking ...
         String qrCode = qrCodeService.generateQRCodeForBooking(b);
         b.setQrCode(qrCode);
         

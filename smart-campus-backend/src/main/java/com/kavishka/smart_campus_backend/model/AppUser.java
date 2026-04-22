@@ -14,11 +14,11 @@ public class AppUser {
     @Id
     private String id; // email
     private String email;
-    private String name;
-    private String phone;
-    private String department;
-    private String building;
-    private String googleSub;
+    private String name; // name of the user
+    private String phone; // phone number of the user
+    private String department; // department of the user
+    private String building; // building of the user
+    private String googleSub; // google sub of the user
     private String role = "USER"; // USER, ADMIN, TECHNICIAN Roles
     private String profileImage; // URL/path to profile image
 }

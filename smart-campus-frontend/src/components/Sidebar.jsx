@@ -21,11 +21,11 @@ export default function Sidebar() {
   const isTechnician = user?.authorities?.some(auth => auth.authority === 'ROLE_TECHNICIAN')
 
   const handleLogout = async () => {
-    // First navigate to the home page
+    // First navigate to the home page ...
     navigate('/')
-    // Clear auth state
+    // Clear auth state ...
     logout()
-    // Show success toast
+    // Show success toast ...
     toast.success('Logged out successfully')
     // Call backend logout (fire and forget - don't wait for response)
     fetch('http://localhost:8080/logout', { credentials: 'include', mode: 'no-cors' }).catch(() => { })
