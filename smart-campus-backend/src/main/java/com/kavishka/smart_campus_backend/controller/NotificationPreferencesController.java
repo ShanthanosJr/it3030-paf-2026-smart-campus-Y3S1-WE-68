@@ -52,7 +52,7 @@ public class NotificationPreferencesController {
         String userId = principal.getEmail();
         NotificationPreferences prefs = service.getOrCreatePreferences(userId);
 
-        // Apply partial updates ...
+        // Apply partial updates
         updates.forEach((key, value) -> {
             switch (key) {
                 case "bookingUpdates" -> prefs.setBookingUpdates(value);

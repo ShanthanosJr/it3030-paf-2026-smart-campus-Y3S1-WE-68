@@ -27,7 +27,7 @@ public class AuthController {
             throw new IllegalArgumentException("User not authenticated");
         }
 
-        // Fetch user from database to get profileImage and the role
+        // Fetch user from database to get profileImage and the role ...
         AppUser appUser = repository.findByEmail(principal.getEmail()).orElse(null);
 
         Map<String, Object> map = new HashMap<>();
