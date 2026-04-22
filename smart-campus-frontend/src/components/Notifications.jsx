@@ -84,13 +84,13 @@ export default function Notifications() {
       await markAsRead(notification.id)
     }
 
-    // Navigate to related entity based on notification type
+    // Navigate to related entity based on notification type ...
     if (notification.relatedId) {
       const message = notification.message.toLowerCase()
       let targetPath = ''
       let itemType = ''
 
-      // Determine the target path based on notification content
+      // Determine the target path based on notification content ...
       if (message.includes('ticket')) {
         targetPath = `/tickets/${notification.relatedId}`
         itemType = 'Ticket'

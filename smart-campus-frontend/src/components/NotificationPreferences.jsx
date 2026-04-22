@@ -76,7 +76,7 @@ export default function NotificationPreferences() {
       await notificationPreferencesAPI.patch({ [key]: newValue })
       toast.success(`${categories.find((c) => c.key === key)?.label || key} ${newValue ? 'enabled' : 'disabled'}`)
     } catch (err) {
-      // Revert on error .. 
+      // Revert on error ...
       setPreferences((prev) => ({ ...prev, [key]: !newValue }))
       toast.error('Failed to update preference')
     }

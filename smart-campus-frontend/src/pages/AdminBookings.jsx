@@ -193,7 +193,7 @@ export default function AdminBookings() {
                 </div>
               </div>
 
-              {/* Resource */}
+              {/* Resource ... */}
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                 <FileText size={20} className="text-gray-400" />
                 <div>
@@ -202,7 +202,7 @@ export default function AdminBookings() {
                 </div>
               </div>
 
-              {/* Date & Time */}
+              {/* Date & Time ... */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                   <Calendar size={20} className="text-gray-400" />
@@ -224,7 +224,7 @@ export default function AdminBookings() {
                 </div>
               </div>
 
-              {/* Purpose */}
+              {/* Purpose ... */}
               {selectedBooking.purpose && (
                 <div className="p-3 bg-gray-50 rounded-xl">
                   <p className="text-sm font-medium text-gray-500 mb-1">Purpose</p>

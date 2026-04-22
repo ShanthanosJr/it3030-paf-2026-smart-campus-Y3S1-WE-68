@@ -8,15 +8,15 @@ export default function Navbar() {
   const { user, logout } = useAuthStore()
 
   const handleLogout = async () => {
-    // First navigate to home page
+    // First navigate to home page ...
     navigate('/')
-    // Clear auth state
+    // Clear auth state ...
     logout()
-    // Call backend logout (fire and forget - don't wait for response)
+    // Call backend logout (fire and forget - don't wait for response) ...
     fetch('http://localhost:8080/logout', { credentials: 'include', mode: 'no-cors' }).catch(() => { })
   }
 
-  // Extract role from authorities
+  // Extract role from authorities ...
   const userRole = user?.authorities?.find(auth =>
     auth.authority?.includes('ROLE_')
   )?.authority?.replace('ROLE_', '') || 'USER'
