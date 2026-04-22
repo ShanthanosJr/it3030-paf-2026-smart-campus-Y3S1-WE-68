@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 public class Notification {
     @Id
     private String id;
-    private String userId;
-    private String message;
-    private boolean isRead = false;
-    private LocalDateTime timestamp = LocalDateTime.now();
-    private String relatedId;
+    private String userId; // user who receives the notification
+    private String message; // message of the notification
+    private boolean isRead = false; // whether the notification has been read
+    private LocalDateTime timestamp = LocalDateTime.now(); // timestamp of the notification
+    private String relatedId; // related id of the notification
 }

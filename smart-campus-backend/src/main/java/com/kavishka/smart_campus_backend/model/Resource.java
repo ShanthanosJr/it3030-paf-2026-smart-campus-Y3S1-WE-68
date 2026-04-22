@@ -14,9 +14,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "resources")
 public class Resource {
     @Id
-    private String id;
+    private String id; // id of the resource
     @NotBlank
-    private String name;
+    private String name; // name of the resource
     @NotBlank
     private String type; // LECTURE_HALL, LAB, MEETING_ROOM, EQUIPMENT ...
     @Min(1)

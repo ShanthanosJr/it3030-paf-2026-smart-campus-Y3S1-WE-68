@@ -38,7 +38,7 @@ public class Booking {
     private int expectedAttendees;
     
     private String status = "PENDING"; // PENDING, APPROVED, REJECTED, CANCELLED
-    private String rejectionReason;
-    private String approvedBy;
+    private String rejectionReason; // reason for rejection
+    private String approvedBy; // who approved the booking
     private String qrCode; // Base64 encoded QR code for approved bookings
 }
