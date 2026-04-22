@@ -78,14 +78,14 @@ export default function Admin() {
           }
         })
 
-        // Calculate ticket categories (by department)
+        // Calculate ticket categories (by department) ...
         const ticketCategories = {}
         ticketsList.forEach(ticket => {
           const category = ticket.department || 'General'
           ticketCategories[category] = (ticketCategories[category] || 0) + 1
         })
 
-        // Calculate booking status distribution
+        // Calculate booking status distribution ...
         const bookingStatuses = {
           PENDING: bookingsList.filter(b => b.status === 'PENDING').length,
           APPROVED: bookingsList.filter(b => b.status === 'APPROVED').length,
@@ -93,7 +93,7 @@ export default function Admin() {
           CANCELLED: bookingsList.filter(b => b.status === 'CANCELLED').length,
         }
 
-        // Calculate average booking duration
+        // Calculate average booking duration ...
         const approvedBookings = bookingsList.filter(b => b.status === 'APPROVED' && b.startTime && b.endTime)
         const totalDuration = approvedBookings.reduce((sum, booking) => {
           const start = new Date(booking.startTime)
