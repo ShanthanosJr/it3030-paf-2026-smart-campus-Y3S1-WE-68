@@ -67,7 +67,7 @@ public class UserController {
         AppUser user = repository.findByEmail(principal.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
         
-        // Update user fields based on provided data ...
+        // Update user fields based on provided data
         if (data.containsKey("name")) {
             user.setName(data.get("name"));
         }
@@ -81,7 +81,7 @@ public class UserController {
             user.setBuilding(data.get("building"));
         }
         
-        // Save updated user to database ...
+        // Save updated user to database
         AppUser savedUser = repository.save(user);
         
         Map<String, Object> response = new HashMap<>();
@@ -136,10 +136,10 @@ public class UserController {
             AppUser user = repository.findByEmail(principal.getEmail())
                     .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-            // Store the file and get the relative path ...
+            // Store the file and get the relative path
             String filePath = fileStorageService.storeProfileImage(file, user.getId());
 
-            // Update user with profile image path ...
+            // Update user with profile image path
             user.setProfileImage(filePath);
             AppUser savedUser = repository.save(user);
 
