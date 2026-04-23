@@ -38,7 +38,7 @@ export default function Bookings() {
       )
     }
 
-    // Date filter
+    // Filter bookings by selected booking date
     if (dateFilter) {
       const filterDate = new Date(dateFilter)
       filtered = filtered.filter(booking => {
