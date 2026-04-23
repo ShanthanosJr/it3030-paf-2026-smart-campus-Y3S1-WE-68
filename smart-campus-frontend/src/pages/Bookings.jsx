@@ -22,7 +22,7 @@ export default function Bookings() {
   }, [])
 
   useEffect(() => {
-    // Apply filters when bookings or filter states change
+    // Apply booking filters dynamically when booking data or filter inputs change
     let filtered = bookings
 
     // Status filter
