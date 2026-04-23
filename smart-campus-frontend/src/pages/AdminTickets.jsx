@@ -86,11 +86,10 @@ export default function AdminTickets() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-4 py-2 rounded-xl font-medium transition-colors ${
-              filter === f
+            className={`px-4 py-2 rounded-xl font-medium transition-colors ${filter === f
                 ? 'bg-orange-500 text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
-            }`}
+              }`}
           >
             {f}
           </button>
@@ -161,7 +160,7 @@ export default function AdminTickets() {
         </table>
       </div>
 
-      {/* Ticket Details Modal */}
+      {/* Ticket Details Modal ...*/}
       {showModal && selectedTicket && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">

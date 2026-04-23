@@ -24,7 +24,7 @@ export default function Admin() {
         const ticketsList = tickets.data || []
         const usersList = users.data || []
 
-        // Calculate top resources by booking counts ...
+        // Calculate top resources by booking counts
         const resourceUsage = {}
         bookingsList.forEach(booking => {
           if (booking.resourceId) {

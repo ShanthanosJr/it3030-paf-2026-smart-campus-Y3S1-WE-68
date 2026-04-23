@@ -99,7 +99,7 @@ export default function AdminCheckIn() {
         {error && <ErrorAlert message={error} />}
         {success && <SuccessAlert message={success} />}
 
-        {/* Verification Method Selection */}
+        {/* Verification Method Selection ... */}
         <div className="card mb-6">
           <div className="flex space-x-4 mb-6">
             <button
