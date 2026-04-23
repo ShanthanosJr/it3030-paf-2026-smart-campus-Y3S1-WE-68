@@ -30,7 +30,7 @@ export default function Bookings() {
       filtered = filtered.filter(booking => booking.status === statusFilter)
     }
 
-    // Search filter (search in purpose)
+    // Search bookings by purpose or booking ID
     if (searchTerm) {
       filtered = filtered.filter(booking => 
         booking.purpose.toLowerCase().includes(searchTerm.toLowerCase()) ||
