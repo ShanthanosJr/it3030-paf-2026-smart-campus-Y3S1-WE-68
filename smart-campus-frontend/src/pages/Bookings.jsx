@@ -12,7 +12,7 @@ export default function Bookings() {
   const [error, setError] = useState(null)
   const [selectedBooking, setSelectedBooking] = useState(null)
   
-  // Filter states
+  // Booking Filter states
   const [statusFilter, setStatusFilter] = useState('ALL')
   const [searchTerm, setSearchTerm] = useState('')
   const [dateFilter, setDateFilter] = useState('')
