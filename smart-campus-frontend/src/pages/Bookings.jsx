@@ -25,7 +25,7 @@ export default function Bookings() {
     // Apply booking filters dynamically when booking data or filter inputs change
     let filtered = bookings
 
-    // Status filter
+    //  Filter bookings based on selected status (Pending, Approved, etc.)
     if (statusFilter !== 'ALL') {
       filtered = filtered.filter(booking => booking.status === statusFilter)
     }
