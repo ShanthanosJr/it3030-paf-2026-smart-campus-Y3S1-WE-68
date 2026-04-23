@@ -19,7 +19,7 @@ export default function BookingForm() {
   const [success, setSuccess] = useState(false)
   const isEditing = !!id
 
-  // Check if we have pre-selected resource from navigation state
+  // Determine if a resource is pre-selected via navigation state (e.g., from resource details page)
   const preSelectedResource = location.state?.resourceId
 
   // Redirect if not authenticated
