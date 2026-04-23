@@ -22,7 +22,7 @@ public class CustomOAuth2UserService extends OidcUserService {
 
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest) {
-        // Load users from Google
+        // Load users from Google ...
         OidcUser oidcUser = super.loadUser(userRequest);
 
         String email = oidcUser.getEmail();
