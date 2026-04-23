@@ -49,7 +49,7 @@ export default function BookingForm() {
       }))
     }
   }, [id, preSelectedResource])
-  
+
 // Fetch all available resources from backend API for booking selection
   const fetchResources = async () => {
     try {
@@ -89,7 +89,8 @@ export default function BookingForm() {
       setInitialLoading(false)
     }
   }
-
+  
+// Validate individual form fields to ensure booking input requirements are met
   const validateField = (name, value) => {
     const newErrors = { ...errors }
 
