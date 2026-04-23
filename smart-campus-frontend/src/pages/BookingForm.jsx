@@ -49,7 +49,8 @@ export default function BookingForm() {
       }))
     }
   }, [id, preSelectedResource])
-
+  
+// Fetch all available resources from backend API for booking selection
   const fetchResources = async () => {
     try {
       const { data } = await resourceAPI.getAll()
