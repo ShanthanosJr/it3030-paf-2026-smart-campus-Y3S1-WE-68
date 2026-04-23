@@ -126,7 +126,7 @@ export default function BookingForm() {
       validateField(name, value)
     }
   }
-
+// Handle booking form submission, validate input, and send booking data to backend API
   const handleSubmit = async (e) => {
     e.preventDefault()
 
