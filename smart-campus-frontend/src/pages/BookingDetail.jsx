@@ -13,6 +13,8 @@ export default function BookingDetail() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  // Load booking details when component mounts or booking ID changes
+
   useEffect(() => {
     fetchBooking()
   }, [id])
