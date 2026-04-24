@@ -35,6 +35,7 @@ export default function BookingDetail() {
           console.error('Failed to fetch resource details:', err)
         }
       }
+      // Handle errors during booking data fetching and notify user of failure
     } catch (err) {
       setError('Failed to load booking details')
     } finally {
