@@ -1,4 +1,5 @@
 // Sidebar navigation for different sections of the app
+// Provides quick access to main sections (Dashboard, Admin, Bookings, etc.)
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
