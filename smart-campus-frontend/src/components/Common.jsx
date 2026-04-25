@@ -3,6 +3,8 @@
  * Description: Contains shared UI elements or helper components used across the application.
  * Purpose: Improves reuse and keeps repeated UI logic in one place.
  */
+// Reusable UI utilities and helper components used across the app
+// Examples: buttons, loaders, modals, shared styles
 export function LoadingSpinner() {
   return (
     <div className="flex items-center justify-center p-8">
