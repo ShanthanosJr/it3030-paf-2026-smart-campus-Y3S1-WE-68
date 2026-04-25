@@ -1,3 +1,8 @@
+/**
+ * Component: Navbar
+ * Description: Displays the top navigation bar for the application.
+ * Purpose: Provides quick access to navigation links, user actions, and app-level controls.
+ */
 import { Link, useNavigate } from 'react-router-dom'
 import { Search, Bell, LogOut } from 'lucide-react'
 import { useAuthStore } from '../store/authStore'

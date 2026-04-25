@@ -1,3 +1,4 @@
+// Admin panel for managing users
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { Shield, Trash2, Edit2 } from 'lucide-react'

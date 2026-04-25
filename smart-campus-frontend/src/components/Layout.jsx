@@ -1,4 +1,9 @@
 // Wrapper layout for consistent page structure (Navbar + Sidebar + Content)
+/**
+ * Component: Layout
+ * Description: Provides the main page structure for the application.
+ * Purpose: Wraps pages with common layout elements such as Navbar, Sidebar, and content area.
+ */
 import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
