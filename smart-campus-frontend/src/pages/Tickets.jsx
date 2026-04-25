@@ -263,5 +263,3 @@ export default function Tickets() {
     </div>
   )
 }
-///////////bnbhjjjjjjjjj
-///////////jgjjjjjjj
