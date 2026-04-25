@@ -1,3 +1,4 @@
+// Wrapper layout for consistent page structure (Navbar + Sidebar + Content)
 import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
