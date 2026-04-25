@@ -13,6 +13,8 @@ export default function BookingDetail() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  // Load booking details when component mounts or booking ID changes
+
   useEffect(() => {
     fetchBooking()
   }, [id])
@@ -24,7 +26,7 @@ export default function BookingDetail() {
       const { data } = await bookingAPI.getById(id)
       setBooking(data)
       
-      // Fetch resource details to get resource name.
+      //  Fetch related resource details to display resource name, type, location, and capacity
       if (data.resourceId) {
         try {
           const resourceResponse = await resourceAPI.getById(data.resourceId)
@@ -33,6 +35,7 @@ export default function BookingDetail() {
           console.error('Failed to fetch resource details:', err)
         }
       }
+      // Handle errors during booking data fetching and notify user of failure
     } catch (err) {
       setError('Failed to load booking details')
     } finally {

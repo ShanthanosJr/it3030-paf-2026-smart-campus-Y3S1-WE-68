@@ -19,7 +19,7 @@ export default function BookingForm() {
   const [success, setSuccess] = useState(false)
   const isEditing = !!id
 
-  // Check if we have pre-selected resource from navigation state
+  // Determine if a resource is pre-selected via navigation state (e.g., from resource details page)
   const preSelectedResource = location.state?.resourceId
 
   // Redirect if not authenticated
@@ -50,6 +50,7 @@ export default function BookingForm() {
     }
   }, [id, preSelectedResource])
 
+// Fetch all available resources from backend API for booking selection
   const fetchResources = async () => {
     try {
       const { data } = await resourceAPI.getAll()
@@ -88,7 +89,8 @@ export default function BookingForm() {
       setInitialLoading(false)
     }
   }
-
+  
+// Validate individual form fields to ensure booking input requirements are met
   const validateField = (name, value) => {
     const newErrors = { ...errors }
 
@@ -124,7 +126,7 @@ export default function BookingForm() {
       validateField(name, value)
     }
   }
-
+// Handle booking form submission, validate input, and send booking data to backend API
   const handleSubmit = async (e) => {
     e.preventDefault()
 
