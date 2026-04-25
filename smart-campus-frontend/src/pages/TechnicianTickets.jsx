@@ -156,13 +156,3 @@ export default function TechnicianTickets() {
     </div>
   )
 }
-///kkkkkkkkkkkkkk
-//kkkkkkkk
-..
-jghghjgh
-iij
-kjkljj
-jhjnb
-jghghjghfghfjhf
-jhbjmk
-hjjmkjg
