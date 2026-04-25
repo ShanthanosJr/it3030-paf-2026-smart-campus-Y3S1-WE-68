@@ -3,6 +3,7 @@
  * Description: Displays the top navigation bar for the application.
  * Purpose: Provides quick access to navigation links, user actions, and app-level controls.
  */
+// Contains branding, navigation links, and user actions (login/profile/logout)
 import { Link, useNavigate } from 'react-router-dom'
 import { Search, Bell, LogOut } from 'lucide-react'
 import { useAuthStore } from '../store/authStore'
