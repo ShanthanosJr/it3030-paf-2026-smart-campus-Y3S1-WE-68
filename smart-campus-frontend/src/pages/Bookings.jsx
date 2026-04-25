@@ -1,3 +1,4 @@
+// Displays list of user bookings
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Calendar, MapPin, Users, Edit2, Trash2, X, Filter, Search } from 'lucide-react'
