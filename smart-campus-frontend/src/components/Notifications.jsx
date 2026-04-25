@@ -1,4 +1,5 @@
 // Displays user notifications and alerts
+// Handles fetching, listing, and marking notifications as read
 import { useState, useEffect, useRef } from 'react'
 import { Bell, X, Check, Trash2, Ticket, Calendar, Info, AlertCircle, CheckCheck, ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
