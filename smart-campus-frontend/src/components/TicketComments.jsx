@@ -1,3 +1,6 @@
+// TicketComments.jsx
+// Handles comments for support tickets
+// Includes comment list, add comment, and interaction logic
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { MessageSquare, Send } from 'lucide-react'
