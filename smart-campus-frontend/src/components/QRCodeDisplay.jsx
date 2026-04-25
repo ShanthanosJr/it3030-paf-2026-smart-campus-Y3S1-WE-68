@@ -1,4 +1,5 @@
 // Generates and displays QR code for booking or check-in
+// Used for check-in, bookings, or resource identification
 import { useState } from 'react'
 import { QrCode, Download, CheckCircle } from 'lucide-react'
 
