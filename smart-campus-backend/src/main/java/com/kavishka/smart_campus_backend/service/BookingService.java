@@ -24,13 +24,13 @@ public class BookingService {
         booking.setUserId(userId);
         booking.setStatus("PENDING");
         
-        // Check for conflicts and provide detailed error message ...
+        // Check for conflicts and provide detailed error message for the user
         String conflictInfo = getConflictInfo(booking);
         if (conflictInfo != null) {
             throw new RuntimeException(conflictInfo);
         }
         
-        // Check capacity constraints ...
+        // Check capacity constraints 
         String capacityError = validateCapacity(booking);
         if (capacityError != null) {
             throw new RuntimeException(capacityError);
@@ -52,13 +52,13 @@ public class BookingService {
         booking.setUserId(userId);
         booking.setStatus("PENDING");
         
-        // Check for conflicts and provide detailed error message ...
+        // Check for conflicts and provide detailed error message
         String conflictInfo = getConflictInfo(booking);
         if (conflictInfo != null) {
             throw new RuntimeException(conflictInfo);
         }
         
-        // Check capacity constraints ...
+        // Check capacity constraints
         String capacityError = validateCapacity(booking);
         if (capacityError != null) {
             throw new RuntimeException(capacityError);
@@ -112,7 +112,7 @@ public class BookingService {
         b.setApprovedBy(adminId);
         
         System.out.println("Generating QR code for approved booking...");
-        // Generate QR code for approved booking ...
+        // Generate QR code for approved booking
         String qrCode = qrCodeService.generateQRCodeForBooking(b);
         b.setQrCode(qrCode);
         

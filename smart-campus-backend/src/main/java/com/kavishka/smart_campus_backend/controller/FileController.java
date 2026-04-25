@@ -35,7 +35,7 @@ public class FileController {
                 try {
                     contentType = Files.probeContentType(filePath);
                 } catch (Exception e) {
-                    // Use default content type ..
+                    // Use default content type as requested
                 }
 
                 return ResponseEntity.ok()
@@ -59,12 +59,12 @@ public class FileController {
             Resource resource = new UrlResource(filePath.toUri());
 
             if (resource.exists() || resource.isReadable()) {
-                // Determine content type
+                // Determine content type per ticket
                 String contentType = "application/octet-stream";
                 try {
                     contentType = Files.probeContentType(filePath);
                 } catch (Exception e) {
-                    // Use default content type
+                    // Use default content type by user request
                 }
 
                 return ResponseEntity.ok()

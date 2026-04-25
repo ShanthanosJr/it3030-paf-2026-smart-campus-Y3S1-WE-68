@@ -26,22 +26,22 @@ public class FileStorageService {
     private static final long MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
     public String storeProfileImage(MultipartFile file, String userId) throws IOException {
-        // Validate file (only images allowed for profile) ...
+        // Validate file (only images allowed for profile)
         validateImageFile(file);
 
-        // Create upload directory if it doesn't exist ...
+        // Create upload directory if it doesn't exist
         Path uploadPath = Paths.get(uploadDir, "profiles", userId);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
 
-        // Delete existing profile images for this user ...
+        // Delete existing profile images for this user
         if (Files.exists(uploadPath)) {
             Files.list(uploadPath).forEach(existingFile -> {
                 try {
                     Files.delete(existingFile);
                 } catch (IOException e) {
-                    // Log but don't fail if we can't delete old file ...
+                    // Log but don't fail if we can't delete old file
                 }
             });
         }

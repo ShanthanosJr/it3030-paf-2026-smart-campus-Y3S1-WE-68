@@ -22,14 +22,14 @@ public class CustomOAuth2UserService extends OidcUserService {
 
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest) {
-        // Load users from Google ...
+        // Load users from Google for authentication 
         OidcUser oidcUser = super.loadUser(userRequest);
 
         String email = oidcUser.getEmail();
         String name = oidcUser.getFullName() != null ? oidcUser.getFullName() : oidcUser.getAttribute("name");
         String sub = oidcUser.getSubject();
 
-        // Save or update users in MongoDB
+        // Save or update users in MongoDB for status control
         AppUser appUser = appUserRepository.findByEmail(email)
                 .orElseGet(() -> {
                     AppUser newUser = new AppUser();
@@ -41,12 +41,12 @@ public class CustomOAuth2UserService extends OidcUserService {
                     return appUserRepository.save(newUser);
                 });
 
-        // Add Spring Security role
+        // Add Spring Security role for admin control
         List<SimpleGrantedAuthority> authorities = List.of(
                 new SimpleGrantedAuthority("ROLE_" + appUser.getRole())
         );
 
-        // Return OidcUser with correct authorities
+        // Return OidcUser with correct authorities with user status
         return new DefaultOidcUser(
                 authorities,
                 oidcUser.getIdToken(),

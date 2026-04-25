@@ -20,7 +20,7 @@ public class QRCodeService {
         try {
             System.out.println("Generating QR code for booking: " + booking.getId());
             
-            // Generate unique QR content ...
+            // Generate unique QR content
             String qrContent = String.format(
                 "SMART_CAMPUS_BOOKING:%s:%s:%s:%s", 
                 booking.getId(),

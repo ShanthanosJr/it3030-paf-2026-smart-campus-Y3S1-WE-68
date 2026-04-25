@@ -35,7 +35,7 @@ public class QRCodeController {
         }
 
         try {
-            // Parse QR content to extract booking ID ...
+            // Parse QR content to extract booking ID from the booking
             String[] parts = qrContent.split(":");
             if (parts.length != 4 || !"SMART_CAMPUS_BOOKING".equals(parts[0])) {
                 Map<String, Object> response = new HashMap<>();
@@ -47,7 +47,7 @@ public class QRCodeController {
             String bookingId = parts[1];
             Booking booking = bookingService.getById(bookingId);
 
-            // Validate QR code content
+            // Validate QR code content for only current user
             boolean isValid = qrCodeService.validateQRCodeContent(qrContent, booking);
             
             Map<String, Object> response = new HashMap<>();

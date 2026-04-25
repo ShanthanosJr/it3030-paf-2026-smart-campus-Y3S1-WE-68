@@ -39,7 +39,7 @@ public class SecurityConfig {
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .userInfoEndpoint(userInfo -> userInfo
-                                .oidcUserService(customOAuth2UserService)   // ← Only this line (Google = OIDC)
+                                .oidcUserService(customOAuth2UserService)   // ← Only change this line (Google = OIDC) for bug fix
                         )
                         .defaultSuccessUrl("http://localhost:5173/dashboard", true)
                 )
