@@ -262,11 +262,3 @@ export default function Tickets() {
       )}
     </div>
   )
-}
-llllllllllll
-wwwwwwwwww
-eeeeeeeeeee
-eeeeeeeeeeeeee
-rrrrrrrrrrr
-{rrrrrrrrrrr}
-(rrrrrrrrrrr)
