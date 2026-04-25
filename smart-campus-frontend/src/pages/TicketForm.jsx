@@ -1,3 +1,4 @@
+// Form to create or submit a support ticket
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
