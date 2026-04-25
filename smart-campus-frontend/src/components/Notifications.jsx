@@ -1,3 +1,4 @@
+// Displays user notifications and alerts
 import { useState, useEffect, useRef } from 'react'
 import { Bell, X, Check, Trash2, Ticket, Calendar, Info, AlertCircle, CheckCheck, ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'

@@ -1,3 +1,4 @@
+// Handles user authentication (login form and validation)
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuthStore } from '../store/authStore'
 import { ArrowLeft, Home } from 'lucide-react'
