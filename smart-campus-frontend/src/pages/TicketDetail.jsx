@@ -194,17 +194,3 @@ export default function TicketDetail() {
     </div>
   )
 }
-{{dbhfsgjgfjdv
-bhjdfbvjdbvf
-bcdnvgfdbv
-nbvkjhfvjkfd
-fnjkhfjk
-nfrekhfkre
-fnerkjhfklreg
-fhrekjghkjerg
-ngrjekhgkt
-rnekjghrejkg}}{}
-nrtjkghjktr
-etngjkhntrg
-jerklghlkteg
-gnjkrehg
