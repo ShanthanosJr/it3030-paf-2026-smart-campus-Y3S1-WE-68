@@ -67,7 +67,7 @@ public class UserController {
         AppUser user = repository.findByEmail(principal.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
         
-        // Update user fields based on provided data
+        // Update user fields based on provided data by user 
         if (data.containsKey("name")) {
             user.setName(data.get("name"));
         }
@@ -81,7 +81,7 @@ public class UserController {
             user.setBuilding(data.get("building"));
         }
         
-        // Save updated user to database
+        // Save updated user to the database 
         AppUser savedUser = repository.save(user);
         
         Map<String, Object> response = new HashMap<>();
@@ -101,7 +101,7 @@ public class UserController {
     @PatchMapping("/{id}/role")
     @PreAuthorize("hasRole('ADMIN')")
     public AppUser updateRole(@PathVariable String id, @RequestParam String role) {
-        // Validate role
+        // Validate roles
         if (!role.matches("USER|ADMIN|TECHNICIAN")) {
             throw new IllegalArgumentException("Invalid role. Must be USER, ADMIN, or TECHNICIAN");
         }

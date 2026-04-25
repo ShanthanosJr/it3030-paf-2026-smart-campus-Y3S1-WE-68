@@ -21,7 +21,7 @@ public class NotificationPreferencesService {
             return existing.get();
         }
 
-        // Create default preferences for new user ...
+        // Create default preferences for new user
         NotificationPreferences prefs = new NotificationPreferences();
         prefs.setUserId(userId);
         prefs.setUpdatedAt(Instant.now());
@@ -35,7 +35,7 @@ public class NotificationPreferencesService {
     public NotificationPreferences updatePreferences(String userId, NotificationPreferences updates) {
         NotificationPreferences prefs = getOrCreatePreferences(userId);
 
-        // Update only the provided fields ...
+        // Update only the provided fields
         if (updates.isBookingUpdates() != prefs.isBookingUpdates()) {
             prefs.setBookingUpdates(updates.isBookingUpdates());
         }
@@ -69,17 +69,17 @@ public class NotificationPreferencesService {
     public boolean shouldSendNotification(String userId, String category) {
         Optional<NotificationPreferences> prefsOpt = repository.findByUserId(userId);
         if (prefsOpt.isEmpty()) {
-            return true; // Default to sending if no preferences set ...
+            return true; // Default to sending if no preferences set
         }
 
         NotificationPreferences prefs = prefsOpt.get();
 
-        // Check master switches first ...
+        // Check master switches first
         if (!prefs.isEmailNotifications() && !prefs.isPushNotifications()) {
             return false;
         }
 
-        // Check category-specific preferences ...
+        // Check category-specific preferences
         return switch (category.toUpperCase()) {
             case "BOOKING" -> prefs.isBookingUpdates();
             case "TICKET" -> prefs.isTicketUpdates();
